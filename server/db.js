@@ -1,3 +1,4 @@
+"Here we are connecting to our mongodb cluster, to load the fetch product in our cluster"
 
 const {MongoClient} = require('mongodb');
 const MONGODB_URI = 'mongodb+srv://louloulepou:louloulepou123@cluster0.zxrqe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
