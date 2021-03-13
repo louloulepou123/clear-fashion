@@ -24,27 +24,67 @@ async function debut(){
     }
 
     const products= await sandbox();
-    console.log(products);
+    
 
-
+/*
     const collection = db.collection('products');
-    const result = collection.insertMany(products);
+    const result = collection.insertMany(products);*/
 
-    console.log(result);
+"we put the insertMany into /**/ because if we let this function the database will receive again the same function"
 
-    async function query1(){
-        const collection = db.collection('products');
-        const query = await collection.find({'price':{$lt : 79}}); // ici je fais la requete donc await car javascript doit attendre 
-        // de recup la query avant de terminer
-        console.log("$",query);
-    
+
+    async function q1 (){
+        try{
+
+
+            const brand = "dedicated";
+            const collection = db.collection('products');
+            const query = await collection.find({brand}).toArray();
+            console.log(`-- Products of the brand ${brand} --`)   
+            console.log(query);
+        }catch(e){
+            console.error(e);
+            process.exit(1);
+        }
     }
-    
-console.log("QUERY1");
-query1();
+
+    async function q2 (){
+        try{
+            
+            const collection = db.collection('products');
+            const maxprice = 60;
+            const query = await collection.find({price: {$lt : maxprice}}).toArray();     
+            console.log(`price under ${maxprice} --`);
+            console.log(query);
+        }catch(e){
+            console.error(e);
+            process.exit(1);
+        }
+    }
+
+    async function q3 (){
+        try{
+            const collection = db.collection('products');
+            const query = await collection.find({}).sort({ price : -1}).toArray();     
+            console.log(`sorted by price`);
+            console.log(query);
+        }catch(e){
+            console.error(e);
+            process.exit(1);
+        }
+    }
+    console.log("Query 1 :");
+    q1();
+    console.log("Query 2 :");
+    q2();
+    console.log("Query 3 : ");
+    q3();
+  
+
 }
 
 debut();
+
 
 
 
