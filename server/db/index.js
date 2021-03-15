@@ -70,6 +70,23 @@ module.exports.find = async query => {
   }
 };
 
+
+module.exports.findById = async id => {
+  try {
+    const db = await getDB();
+    const collection = db.collection(MONGODB_COLLECTION);
+    const result = await collection.find({'_id':id}).toArray();
+
+    return result;
+
+  } catch (error) {
+    console.error('collection.find..', error);
+    return null;
+  }
+}
+
+
+
 /**
  * Close the connection
  */
