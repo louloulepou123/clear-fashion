@@ -86,6 +86,23 @@ module.exports.findById = async id => {
 }
 
 
+module.exports.filteredproducts = async (limit,brand,price) => {
+  try {
+    const db = await getDB();
+    const collection = db.collection(MONGODB_COLLECTION);
+    const result = await collection.find({'brand':brand,'price':{$lte:price}}).limit(limit).toArray();
+
+    return result;
+
+  } catch (error) {
+    console.error('collection.find..', error);
+    return null;
+  }
+}
+
+
+
+
 
 /**
  * Close the connection

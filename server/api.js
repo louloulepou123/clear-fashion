@@ -32,6 +32,24 @@ app.get('/products/:id', async (request, response)=> {
 })
 
 
+app.get('/products/search', async (request, response)=> {
+  console.log(request.query);
+
+  let brand = request.params.brand;
+  let limit = request.params.limit;
+  let price = parseInt(request.params.price);
+  console.log(limit);
+
+  let res = await db.filteredproducts(limit,brand,price);
+
+  response.send({
+    'limit' : limit,
+    'results' : res
+  });
+})
+
+
+
 app.listen(PORT);
 console.log(`📡 Running on port ${PORT}`);
 
