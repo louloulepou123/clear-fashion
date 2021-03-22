@@ -18,7 +18,6 @@ app.use(require('body-parser').json());
 app.use(cors());
 app.use(helmet());
 
-
 app.options('*', cors());
 
 app.get('/', (request, response) => {
