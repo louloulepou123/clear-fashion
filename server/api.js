@@ -25,26 +25,32 @@ app.get('/', (request, response) => {
 });
 
 
-
-app.get('/products/:id', async (request, response)=> {
-  response.send( await db.findById(request.params.id))
-})
-
-
 app.get('/products/search', async (request, response)=> {
+  
   console.log(request.query);
-
+  
+  let limit = parseInt(request.params.limit);
   let brand = request.params.brand;
-  let limit = request.params.limit;
   let price = parseInt(request.params.price);
   console.log(limit);
 
-  let res = await db.filteredproducts(limit,brand,price);
+
+  let res = await db.filteredproducts(limit, brand, price);
 
   response.send({
     'limit' : limit,
     'results' : res
   });
+})
+
+app.get('/products', async (request, response)=> {
+  response.send( await db.find({}));
+})
+
+
+
+app.get('/products/:id', async (request, response)=> {
+  response.send( await db.findById(request.params.id))
 })
 
 

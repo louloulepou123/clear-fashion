@@ -1,6 +1,8 @@
 /* eslint-disable no-console, no-process-exit */
 const dedicatedbrand = require('./sources/dedicatedbrand');
 const loom = require('./sources/loom');
+const adresse = require('./sources/adresse');
+const bash = require('./sources/bash');
 const db = require('./db');
 
 async function sandbox () {
@@ -40,6 +42,47 @@ async function sandbox () {
     console.log(`👕 ${results.flat().length} products found`);
 
     products.push(results.flat());
+
+
+    pages = [
+      'https://adresse.paris/608-pulls-sweatshirts',
+      'https://adresse.paris/584-chemises'   
+    ];
+
+
+    console.log(`🕵️‍♀️  browsing ${pages.length} pages with for...of`);
+
+    // Way 1 with for of: we scrape page by page
+    for (let page of pages) {
+      console.log(`🕵️‍♀️  scraping ${page}`);
+
+      let results = await adresse.scrape(page);
+
+      console.log(`👕 ${results.length} products found`);
+
+      products.push(results);
+    }
+
+
+    pages = [
+      'https://ba-sh.com/fr/fr/robes/',
+      'https://ba-sh.com/fr/fr/combinaisons/' 
+    ];
+
+
+    console.log(`🕵️‍♀️  browsing ${pages.length} pages with for...of`);
+
+    // Way 1 with for of: we scrape page by page
+    for (let page of pages) {
+      console.log(`🕵️‍♀️  scraping ${page}`);
+
+      let results = await bash.scrape(page);
+
+      console.log(`👕 ${results.length} products found`);
+
+      products.push(results);
+    }
+
     products = products.flat();
 
     console.log('\n');
@@ -47,6 +90,7 @@ async function sandbox () {
     console.log(`👕 ${products.length} total of products found`);
 
     console.log('\n');
+
 
     const result = await db.insert(products);
 
@@ -61,6 +105,7 @@ async function sandbox () {
     console.log(loomOnly);
 
     db.close();
+
   } catch (e) {
     console.error(e);
   }

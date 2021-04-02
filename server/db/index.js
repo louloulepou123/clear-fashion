@@ -3,7 +3,7 @@ const {MongoClient} = require('mongodb');
 const fs = require('fs');
 
 const MONGODB_DB_NAME = 'clear';
-const MONGODB_COLLECTION = 'prod';
+const MONGODB_COLLECTION = 'test3';
 const MONGODB_URI = 'mongodb+srv://louloulepou:louloulepou123@cluster0.zxrqe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 let client = null;
@@ -86,19 +86,23 @@ module.exports.findById = async id => {
 }
 
 
-module.exports.filteredproducts = async (limit,brand,price) => {
+module.exports.filteredproducts = async (limit, brand, price) => {
   try {
     const db = await getDB();
     const collection = db.collection(MONGODB_COLLECTION);
     const result = await collection.find({'brand':brand,'price':{$lte:price}}).limit(limit).toArray();
 
     return result;
-
   } catch (error) {
     console.error('collection.find..', error);
     return null;
   }
 }
+
+
+
+
+
 
 
 

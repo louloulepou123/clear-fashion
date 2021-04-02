@@ -68,11 +68,14 @@ const renderProducts = products => {
     .map(product => {
       return `
       <div class="product" id=${product.uuid}>
+      <div class="img_container">
+      <a href="${product.link}" target="_blank">
+          <img class="product-photo" src=${product.photo}></a>
+      <div class="product-info">
         <span>${product.brand}</span>
         <a href="${product.link}">${product.name}</a>
         <span>${product.price}€</span>
-        <span>${product.released}</span>
-
+        </div>
       </div>
     `;
     })

@@ -1,0 +1,134 @@
+
+*{
+    letter-spacing:1px;
+    overflow-x: hidden;
+    font-family: Courier New, monospace;   
+}
+h1{
+    font-size: 70px;
+    text-align: center;
+  
+    padding-top: 0px;
+    color:rgb(26, 94, 68);
+}
+
+h2{
+    font-size: 25px;
+    padding-top: 0px;
+    color:rgb(255, 255, 255);
+}
+
+#options{
+    font-size: 28px;
+    padding-left: 20px;
+    text-align: left;
+    margin-top:10px;
+    line-height: 50px;
+    color:rgb(255, 255, 255);
+    
+}
+
+#indicators{
+    font-size: 50px;
+    padding-left: 20px;
+    text-align: left;
+    margin-top:10px;
+    line-height: 50px;
+    color:rgb(255, 255, 255);
+    
+}
+
+
+
+
+
+.image1{ 
+    width: 20;
+    height: 30;
+    position: absolute;
+    top: 0px;
+    left: 1000px;
+    size : 15px;
+    padding-top: 0px;
+    } 
+
+#nbProducts{
+    font-size: 20px;
+    padding-left: 20px;
+    text-align: left;
+    margin-top:10px;
+    line-height: 50px;
+    color:rgb(255, 255, 255);
+
+
+}
+
+#indicators{
+    font-size: 15px;
+    padding-left: 20px;
+    text-align: left;
+    margin-top:10px;
+    
+    color:rgb(255, 255, 255);
+
+}
+
+#filters{
+    font-size: 15px;
+    padding-left: 20px;
+    text-align: left;
+    margin-top:10px;
+    
+    color:rgb(255, 255, 255);
+}
+
+#price{
+    font-size: 15px;
+    padding-left: 20px;
+    text-align: left;
+    margin-top:10px;
+    
+    color:rgb(255, 255, 255);
+}
+
+#brand{
+    font-size: 15px;
+    padding-left: 20px;
+    text-align: left;
+    margin-top:10px;
+    
+    color:rgb(255, 255, 255);
+}
+
+#sort{
+    font-size: 15px;
+    padding-left: 20px;
+    text-align: left;
+    margin-top:10px;
+    
+    color:rgb(255, 255, 255);
+}
+
+#show{
+    font-size: 15px;
+    padding-left: 20px;
+    text-align: left;
+    margin-top:10px;
+    
+    color:rgb(255, 255, 255);
+}
+
+#page{
+    font-size: 15px;
+    padding-left: 20px;
+    text-align: left;
+    margin-top:10px;
+    
+    color:rgb(255, 255, 255);
+}
+
+/*#bg-image{
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}*/
+

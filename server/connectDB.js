@@ -2,7 +2,7 @@
 
 const {MongoClient} = require('mongodb');
 const MONGODB_URI = 'mongodb+srv://louloulepou:louloulepou123@cluster0.zxrqe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-const MONGODB_DB_NAME = 'ClearFashion';
+const MONGODB_DB_NAME = 'clear';
 
 async function debut(){
     const client = await MongoClient.connect(MONGODB_URI, {'useNewUrlParser': true});
@@ -13,7 +13,6 @@ async function debut(){
     try {
         eshop = 'https://www.dedicatedbrand.com/en/men/news';
         const products = await dedicatedbrand.scrape(eshop);
-        console.log(products);
         console.log('done');
         return products
         process.exit(0);
@@ -26,9 +25,9 @@ async function debut(){
     const products= await sandbox();
     
 
-/*
-    const collection = db.collection('products');
-    const result = collection.insertMany(products);*/
+
+    const collection = db.collection('test1');
+    const result = collection.insertMany(products);
 
 "we put the insertMany into /**/ because if we let this function the database will receive again the same function"
 
@@ -36,7 +35,7 @@ async function debut(){
     async function q1 (){
         try{
 
-
+console.log("get product which brand is dedicated");
             const brand = "dedicated";
             const collection = db.collection('products');
             const query = await collection.find({brand}).toArray();
@@ -51,6 +50,7 @@ async function debut(){
     async function q2 (){
         try{
             
+            console.log("get product where the price is under 60e");
             const collection = db.collection('products');
             const maxprice = 60;
             const query = await collection.find({price: {$lt : maxprice}}).toArray();     
@@ -64,6 +64,7 @@ async function debut(){
 
     async function q3 (){
         try{
+            console.log("get product sorted by price");
             const collection = db.collection('products');
             const query = await collection.find({}).sort({ price : -1}).toArray();     
             console.log(`sorted by price`);
@@ -73,12 +74,11 @@ async function debut(){
             process.exit(1);
         }
     }
-    console.log("Query 1 :");
     q1();
-    console.log("Query 2 :");
     q2();
-    console.log("Query 3 : ");
     q3();
+    
+    
   
 
 }
