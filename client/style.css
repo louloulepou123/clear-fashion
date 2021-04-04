@@ -2,7 +2,8 @@
 *{
     letter-spacing:1px;
     overflow-x: hidden;
-    font-family: Courier New, monospace;   
+    font-family: Courier New, monospace; 
+    color:rgb(26, 94, 68)  
 }
 h1{
     font-size: 70px;
@@ -13,9 +14,10 @@ h1{
 }
 
 h2{
-    font-size: 25px;
+    font-size: 30px;
     padding-top: 0px;
-    color:rgb(255, 255, 255);
+    color:rgb(26, 94, 68);
+    text-align: center;
 }
 
 #options{
@@ -53,12 +55,12 @@ h2{
     } 
 
 #nbProducts{
-    font-size: 20px;
+    font-size: 15px;
     padding-left: 20px;
     text-align: left;
     margin-top:10px;
     line-height: 50px;
-    color:rgb(255, 255, 255);
+    color:rgb(26, 94, 68);
 
 
 }
@@ -131,4 +133,65 @@ h2{
     filter: blur(8px);
     -webkit-filter: blur(8px);
 }*/
+
+
+
+.product{
+    padding-bottom: 10px;
+    padding-top: 20px;
+    line-height: 30px;
+    width: min-content;
+    align-items: stretch;
+}
+.product-info{
+    font-size: 20px;
+    color:aliceblue;
+}
+
+#products{
+    
+    width: 100%;
+    padding:20px;
+    justify-content: center;
+    
+    
+}
+
+.product-photo{
+    max-height: 400px;
+    height:auto;
+    max-width: 400px;
+    border-radius: 10px;
+}
+@media screen and (max-width: 450px){   
+    .product-photo{   
+        max-height: 300px;
+        height:auto;
+        max-width: 400px;
+        border-radius: 8px;   
+    } 
+}
+@media screen and (max-width: 330px){   
+    .product-photo{   
+        max-height: 250px;
+        height:auto;
+        max-width: 250px;
+        border-radius: 8px;   
+    } 
+}
+
+.img_container{
+    position: relative;
+}
+
+.img_container button{
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  width:40px;
+  height:40px;
+  border:none;
+  background-color:transparent;
+}
+
 

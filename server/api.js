@@ -29,12 +29,12 @@ app.get('/products/search', async (request, response)=> {
   
   console.log(request.query);
   
-  let limit = parseInt(request.params.limit);
-  let brand = request.params.brand;
-  let price = parseInt(request.params.price);
+  let limit = parseInt(request.query.limit);
+  let brand = request.query.brand;
+  let price = parseInt(request.query.price);
   console.log(limit);
-
-
+  console.log(brand);
+  console.log(price);
   let res = await db.filteredproducts(limit, brand, price);
 
   response.send({
@@ -43,9 +43,36 @@ app.get('/products/search', async (request, response)=> {
   });
 })
 
-app.get('/products', async (request, response)=> {
-  response.send( await db.find({}));
+
+
+app.get('/search', async(req, response) => {
+  try{
+    let res;
+    let meta;
+  if(req.query.brand){
+    res = await db.findPage(parseInt(req.query.page),parseInt(req.query.size),{'brand': req.query.brand});
+    meta = await db.getMeta(parseInt(req.query.page),parseInt(req.query.size),{'brand': req.query.brand});
+  }
+  else{
+    res = await db.findPage(parseInt(req.query.page),parseInt(req.query.size));
+    meta = await db.getMeta(parseInt(req.query.page),parseInt(req.query.size));
+  }
+  
+  
+  let products = {
+    "success" : true,
+    "data" : {
+    "result" : res,
+    "meta": meta
+      }}
+  response.send(products);
+
+    
+  }catch(e){
+    response.send(e)
+  }
 })
+
 
 
 
@@ -54,6 +81,23 @@ app.get('/products/:id', async (request, response)=> {
 })
 
 
+
+app.get('', async (req, response) => {
+  console.log("was requested pagination");
+  let res = await db.findPage(parseInt(req.query.page),parseInt(req.query.size))
+  let meta = await db.getMeta(parseInt(req.query.page),parseInt(req.query.size))
+  let products = {
+    "success" : true,
+    "data" : {
+    "result" : res,
+    //"meta" : {"currentPage":req.query.page,"pageCount":?,"pageSize":res.length,"count":?}
+    "meta": meta
+      }
+
+  }
+  response.send(products);
+  
+});
 
 app.listen(PORT);
 console.log(`📡 Running on port ${PORT}`);

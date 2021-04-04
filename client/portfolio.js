@@ -37,7 +37,7 @@ const setCurrentProducts = ({result, meta}) => {
  * @param  {Number}  [size=12] - size of the page
  * @return {Object}
  */
-const fetchProducts = async (page = 1, size = 12) => {
+/*const fetchProducts = async (page = 1, size = 12) => {
   try {
     const response = await fetch(
       `https://clear-fashion-api.vercel.app?page=${page}&size=${size}`
@@ -55,6 +55,28 @@ const fetchProducts = async (page = 1, size = 12) => {
     return {currentProducts, currentPagination};
   }
 };
+*/
+
+const fetchProducts = async (page = 1, size = 12) => {
+  try {
+    const response = await fetch(
+      `https://clear-fashion-theta.vercel.app/search?page=${page}&size=${size}`
+    );
+    const body = await response.json();
+
+    if (body.success !== true) {
+      console.error(body);
+      return {currentProducts, currentPagination};
+    }
+
+    return body.data;
+  } catch (error) {
+    console.error(error);
+    return {currentProducts, currentPagination};
+  }
+};
+
+
 
 
 /**
@@ -72,20 +94,20 @@ const renderProducts = products => {
       <a href="${product.link}" target="_blank">
           <img class="product-photo" src=${product.photo}></a>
       <div class="product-info">
-        <span>${product.brand}</span>
-        <a href="${product.link}">${product.name}</a>
+        <span>-${product.brand}-</span>
+        <span>${product.name}</span>
         <span>${product.price}€</span>
         </div>
-      </div>
     `;
     })
     .join('');
 
   div.innerHTML = template;
   fragment.appendChild(div);
-  sectionProducts.innerHTML = '<h2>Products</h2>';
+  sectionProducts.innerHTML = '<h2> \u2661 Your eco-friendly products list \u2661 </h2>';
   sectionProducts.appendChild(fragment);
 };
+
 
 
 
@@ -227,7 +249,7 @@ selectRecentProduct.addEventListener('change', event =>{
     var mydate = new Date(product.released);
     const diff = dayDiff(mydate,now);
     const diff_weeks = diff/7;
-    if(diff_weeks <= '3')
+    if(diff_weeks <= '15')
       {
         recentProduct.push(product);
       }
@@ -280,7 +302,7 @@ selectSort.addEventListener('change', event => {
       var mydate = new Date(product.released);
       const diff = dayDiff(mydate,now);
       const diff_weeks = diff/7;
-      if(diff_weeks <= '3')
+      if(diff_weeks <= '15')
         {
           sorting.push(product);
         }
@@ -292,7 +314,7 @@ selectSort.addEventListener('change', event => {
       var mydate = new Date(product.released);
       const diff = dayDiff(mydate,now);
       const diff_weeks = diff/7;
-      if(diff_weeks > '3')
+      if(diff_weeks > '15')
         {
           sorting.push(product);
         }
