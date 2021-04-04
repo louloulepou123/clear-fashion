@@ -83,7 +83,7 @@ const fetchProducts = async (page = 1, size = 12) => {
  * Render list of products
  * @param  {Array} products
  */
-const renderProducts = products => {
+/*const renderProducts = products => {
   const fragment = document.createDocumentFragment();
   const div = document.createElement('div');
   const template = products
@@ -96,6 +96,7 @@ const renderProducts = products => {
       <div class="product-info">
         <span>-${product.brand}-</span>
         <span>${product.name}</span>
+        <span>${product.released}</span>
         <span>${product.price}€</span>
         </div>
     `;
@@ -106,7 +107,46 @@ const renderProducts = products => {
   fragment.appendChild(div);
   sectionProducts.innerHTML = '<h2> \u2661 Your eco-friendly products list \u2661 </h2>';
   sectionProducts.appendChild(fragment);
+};*/
+
+const renderProducts = products => {
+  /*const fragment = document.createDocumentFragment();
+  const div = document.createElement('div');*/
+  const template = products
+    .map(product => {
+      return `
+      <div class="product-card" id=${product._id}>
+          <div class="product-image">
+          <a href="${product.link}" target="_blank">
+          <img class="product-photo" src=${product.photo}></a>
+          </div>
+          <div class="product-info">
+            <span><b>${product.brand}</b></span>
+            <a class="prodname" href="${product.link}" target="_blank">${product.name}</a>
+            <p>${product.price}€</p>
+          </div>
+        </div>
+     
+    `;
+    })
+    .join('');
+
+  /*div.innerHTML = template;
+  fragment.appendChild(div);
+  sectionProducts.innerHTML = '<h2> \u2661 Your eco-friendly products list \u2661 </h2>';
+  sectionProducts.appendChild(fragment);*/
+  sectionProducts.innerHTML = template;
 };
+
+
+
+
+
+
+
+
+
+
 
 
 
