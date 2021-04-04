@@ -7,9 +7,10 @@
 }
 h1{
     font-size: 70px;
-    text-align: center;
+
   
-    padding-top: 0px;
+    margin-top: 15px;
+    margin-left: 470px;
     color:rgb(26, 94, 68);
 }
 
@@ -61,6 +62,7 @@ h2{
     margin-top:10px;
     line-height: 50px;
     color:rgb(26, 94, 68);
+    margin-right:20px;
 
 
 }
@@ -208,4 +210,10 @@ h2{
     flex: 1 19%;
   }
 
-
+.tab{
+    border:"3";
+    margin-top:"20px";
+    width:"500 px";
+    height:"50"; 
+    margin-right:"50px"
+}
